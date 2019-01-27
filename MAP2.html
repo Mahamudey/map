@@ -1,0 +1,50 @@
+<!doctype html>
+<head>
+	<meta charset="utf-8">
+
+	<!--add the script for leaflet after it's CSS-->
+		 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+  		 integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   		 crossorigin=""/>
+			<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+   			integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+   			crossorigin=""></script>
+				<title>leaflet second map</title>
+</head>
+
+<body>
+	<!--make a container and style it before writing the MAP script-->
+	<div id="mapc"></div>
+		<style>
+			#mapc {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+			      }
+		</style>
+		<!--after styling write script to add the map in the container and start editing the map-->
+				<script>
+					var mymap = L.map('mapc').setView([64.964875, 17.675409], 5);
+
+					L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+
+					attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+
+					maxZoom: 18,
+					id: 'mapbox.streets',
+					accessToken: 'pk.eyJ1IjoibWFoYW11ZGV5IiwiYSI6ImNqcmV3MzN2ODE4bjE0NG1sejZhYmg4Y2MifQ.g7ms8SKiivH_81OrAHVBXQ'
+					}).addTo(mymap);
+
+					var marker = L.marker([59.33258, 18.0649]).addTo(mymap);
+
+					var circle = L.circle([63.1792, 14.63566], {
+						color: 'blue',
+						fillColor: '#f03',
+						fillOpacity: 0.5,
+						radius: 50000
+					}).addTo(mymap);
+				</script>
+</body>
+</html>
