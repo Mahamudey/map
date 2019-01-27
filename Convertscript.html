@@ -1,0 +1,44 @@
+<!doctype html>
+
+
+<head>
+  <meta charset="utf-8">
+  <title>Latitude-Longitude Converter</title>
+  <script type="text/javascript" src="geopoint.js"></script>
+</head>
+
+<script type="text/javascript">
+
+    var lon = "62° 50' 22.66\"";
+    var lat = "12° 54' 0.55\"";
+
+    var point = new GeoPoint(lon, lat);
+
+    //"24° 43' 30.16\""
+    // "58° 44' 43.97\"";
+    // 62°50'22.66"N
+    // 12°54'0.55"O
+
+
+   // console.log(point.getLonDec()); // 24.725044444444443
+   // console.log(point.getLatDec()); // 58.74554722222222
+    
+</script>
+
+<body>
+<p id="llongitude"></p>
+<script>
+document.getElementById("llongitude").innerHTML = point.getLonDec();
+</script>
+
+<p id="rlatitude"></p>
+<script>
+document.getElementById("rlatitude").innerHTML =point.getLatDec();
+</script>
+
+</body>
+</html>
+
+
+
+
