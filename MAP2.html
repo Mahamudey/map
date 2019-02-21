@@ -39,12 +39,37 @@
 
 					var marker = L.marker([59.33258, 18.0649]).addTo(mymap);
 
-					var circle = L.circle([63.1792, 14.63566], {
+					/* var circle = L.circle([63.1792, 14.63566], {
 						color: 'blue',
 						fillColor: '#f03',
 						fillOpacity: 0.5,
 						radius: 50000
-					}).addTo(mymap);
+					}).addTo(mymap);  */
+					var latLong =  [{
+
+         		"lat" : 62.8396277777778,
+         		"lng" : 12.9001527777778
+         	}, {
+         		"lat" : 63.8306333333333,
+         		"lng" : 13.2306472222222
+         	},{
+         		"lat" : 64.8168222222222,
+         		"lng" : 15.0742527777778
+         	}];
+
+         	// iterate over the array of the coordinates
+
+         	latLong.forEach(function(coord) {
+         		var circle = L.circle(coord, {
+
+         			color: 'red',
+         			fillColor: '#f03',
+         			fillOpacity: '0.5',
+         			radius: 50000
+
+        		}).addTo(mymap);
+         	});
+
 				</script>
 </body>
 </html>

@@ -18,11 +18,38 @@
 
          <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
          <script>
-         	var map = L.map('mapContainer').setView([59.334591, 18.063240], 14);
+         	var map = L.map('mapContainer').setView([64.964875, 17.675409], 5);
          	
          	var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-         	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright"> OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>'
+         	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright"> OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+         	maxZoom: 18,
          	}).addTo(map);
+
+         	var latLong =  [{
+
+         		"lat" : 62.8396277777778,
+         		"lng" : 12.9001527777778
+         	}, {
+         		"lat" : 63.8306333333333,
+         		"lng" : 13.2306472222222
+         	},{
+         		"lat" : 64.8168222222222,
+         		"lng" : 15.0742527777778
+         	}];
+
+         	// iterate over the array of the coordinates
+
+         	latLong.forEach(function(coord) {
+         		var circle = L.circle(coord, {
+
+         			color: 'red',
+         			fillColor: '#f03',
+         			fillOpacity: '0.5',
+         			radius: 50000
+
+        		}).addTo(map);
+         	});
+
          </script>
     </head>
     </html>
