@@ -1,0 +1,164 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Leaflet Layer Control</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+
+  <style>
+  	#mapc {
+  		position: absolute;
+  		top: 0;
+  		right: 0;
+  		bottom: 0;
+  		left: 0;
+  	    }
+  </style>
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+  <body>
+  	<div id="mapc"></div>
+
+  	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+
+  	<script>
+            
+         	var mapc = L.map('mapc').setView([64.964875, 17.675409], 5);
+                
+                var f2017 = L.layerGroup();
+                var f2018 =  L.layerGroup();
+                
+         	var layerl = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+         	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright"> OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+         	maxZoom: 18,
+                
+         });
+                var layerd = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+         	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright"> OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+         	maxZoom: 18,
+         });
+                var opsm = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                maxZoom: 18,
+                id: 'mapbox.streets',
+                accessToken: 'pk.eyJ1IjoibWFoYW11ZGV5IiwiYSI6ImNqcmV3MzN2ODE4bjE0NG1sejZhYmg4Y2MifQ.g7ms8SKiivH_81OrAHVBXQ'
+	 }).addTo(mapc);
+         
+          
+                //first group of circles
+
+         	var latLong =  [{
+
+         		"lat" : 62.8396277777778,
+         		"lng" : 12.9001527777778
+         	}, {
+         		"lat" : 63.8306333333333,
+         		"lng" : 13.2306472222222
+         	},{
+         		"lat" : 64.8168222222222,
+         		"lng" : 15.0742527777778
+         	},{
+         		"lat" : 65.8221027777778,
+         		"lng" : 15.2141833333333
+         	},{
+         		"lat" : 65.9449472222222,
+         		"lng" : 15.3259611111111
+         	},{
+         		"lat" : 67.3826361111111,
+         		"lng" : 16.8653333333333
+         	},{
+         		"lat" : 67.8886722222222,
+         		"lng" : 18.5150666666667
+         	},{
+         		"lat" : 67.9578916666667,
+         		"lng" : 17.24515
+         	}];
+
+         	// iterate over the array of the coordinates
+                
+
+         	latLong.forEach(function(coord) {
+         		var circle = L.circle(coord, {
+         			
+         			color: 'red',
+         			fillColor: '#f03',
+         			fillOpacity: '0.5',
+         			radius: 15000
+                                
+                            });
+                            /* addng the circles to the 2018 layer group */
+                            f2018.addLayer(circle); 
+                        });
+                
+                
+                // second group of circles
+
+                var latLong =  [{
+
+         		"lat" : 62.8396277777778,
+         		"lng" : 12.9001527777778
+         	}, {
+         		"lat" : 63.8306333333333,
+         		"lng" : 13.2306472222222
+         	},{
+         		"lat" : 64.8168222222222,
+         		"lng" : 15.0742527777778
+         	},{
+         		"lat" : 65.8221027777778,
+         		"lng" : 15.2141833333333
+         	},{
+         		"lat" : 65.9449472222222,
+         		"lng" : 15.3259611111111
+         	},{
+         		"lat" : 67.3826361111111,
+         		"lng" : 16.8653333333333
+         	},{
+         		"lat" : 67.8886722222222,
+         		"lng" : 18.5150666666667
+         	},{
+         		"lat" : 67.9578916666667,
+         		"lng" : 17.24515
+         	}];
+
+         	// iterate over the array of the coordinates
+                 
+         	latLong.forEach(function(coord) {
+         		var circle1 = L.circle(coord, {
+
+         			color: 'yellow',
+         			fillColor: '#4682b4',
+         			fillOpacity: '0.5',
+         			radius: 15000
+                                
+                            });
+                            /* addng the circles to the 2017 layer group */
+                            f2017.addLayer(circle1);     
+        		});
+                        
+                
+                /* defining overLayMaps */
+                
+                var baseMaps = {
+              "LightGray": layerl,
+                "DarkGray": layerd,
+                "StreetMap": opsm
+                    };
+                
+                var overlayMaps = {     
+                    "Fox2017": f2017,
+                    "Fox2018": f2018
+                    };
+                    /* inserting the layer control.*/
+                var contl = L.control.layers(baseMaps, overlayMaps).addTo(mapc);
+      
+         </script>
+
+
+
+  </body>
+
+</head>
+
+
+</html>
